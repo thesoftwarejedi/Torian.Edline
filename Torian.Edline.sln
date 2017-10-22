@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Torian.Edline.Skill.AWSLambda", "Torian.Edline.Skill.AWSLambda\Torian.Edline.Skill.AWSLambda.csproj", "{94102D88-204F-4268-A7D5-1FAB9A4D35D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torian.Edline", "Torian.Edline\Torian.Edline.csproj", "{8F9C630A-67CE-4463-8D23-81DC4DAE4D1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torian.Edline.Tests", "Torian.Edline.Tests\Torian.Edline.Tests.csproj", "{06F1C61B-9C2B-40C5-AAC9-4E0F6D7620F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{94102D88-204F-4268-A7D5-1FAB9A4D35D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94102D88-204F-4268-A7D5-1FAB9A4D35D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94102D88-204F-4268-A7D5-1FAB9A4D35D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F9C630A-67CE-4463-8D23-81DC4DAE4D1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F9C630A-67CE-4463-8D23-81DC4DAE4D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F9C630A-67CE-4463-8D23-81DC4DAE4D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F9C630A-67CE-4463-8D23-81DC4DAE4D1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06F1C61B-9C2B-40C5-AAC9-4E0F6D7620F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06F1C61B-9C2B-40C5-AAC9-4E0F6D7620F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06F1C61B-9C2B-40C5-AAC9-4E0F6D7620F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06F1C61B-9C2B-40C5-AAC9-4E0F6D7620F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
