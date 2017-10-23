@@ -19,21 +19,30 @@ namespace Torian.Edline.Skill.AWSLambda
 
         public async Task<SkillResponse> FunctionHandler(SkillRequest input, ILambdaContext context)
         {
-            var requestType = input.GetRequestType();
-            if (requestType == typeof(IntentRequest))
+            var intent = input.Request as IntentRequest;
+            if (input.GetRequestType() == typeof(LaunchRequest))
+                return ResponseBuilder.Tell("You can ask me for a particular studen't grades");
+            else if (intent.DialogState != DialogState.Completed)
+                return ResponseBuilder.DialogDelegate();
+            else if (intent.Intent.ConfirmationStatus == ConfirmationStatus.Denied)
+                return ResponseBuilder.Empty();
+            else if (intent.Intent.Name.Equals("GetGradesIntent"))
             {
-                var intentRequest = input.Request as IntentRequest;
-                // check the name to determine what you should do
-                if (intentRequest.Intent.Name.Equals("GetGradesIntent"))
+                try
                 {
                     // get the slots
-                    var student = intentRequest.Intent.Slots["StudentName"].Value;
+                    var student = intent.Intent.Slots["StudentName"].Value;
                     var r = await EdlineEngine.LookupGradesAsync(new LookupGradesRequest() { Username = "locuester", Password = "", StudentName = student });
-                    string gradeString = r.Grades.Aggregate(new StringBuilder(), (a, b) => a.Append($"{b.ClassName} : {b.Grade}. ")).ToString();
-                    return ResponseBuilder.Tell($"{student}'s grades are: {gradeString}");
+                    string gradeString = r.Grades.Aggregate(new StringBuilder(), (a, b) => a.Append($"{b.ClassName} : {b.Grade}.\r\n")).ToString();
+                    return ResponseBuilder.TellWithCard($"{r.StudentName}'s grades are: {gradeString}", $"{r.StudentName}'s grades", gradeString);
+                }
+                catch (Exception ex)
+                {
+                    return ResponseBuilder.Tell($"I had a problem with your request: {ex.Message}");
                 }
             }
-            return ResponseBuilder.Empty();
+            else
+                return ResponseBuilder.Empty();
         }
 
     }

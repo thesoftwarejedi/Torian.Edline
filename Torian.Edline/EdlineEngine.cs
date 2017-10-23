@@ -61,9 +61,9 @@ namespace Torian.Edline
                         a.Attributes[0].Value)); //id
 
                 //pick out the student by name or first letter of name
-                var student = students.FirstOrDefault(a => a.Item1 == req.StudentName);
+                var student = students.FirstOrDefault(a => a.Item1.ToLower() == req.StudentName.ToLower());
                 if (student == null)
-                    student = students.FirstOrDefault(a => a.Item1[0] == req.StudentName[0]);
+                    student = students.FirstOrDefault(a => a.Item1.ToLower()[0] == req.StudentName.ToLower()[0]);
                 if (student == null)
                     throw new StudentNotFoundException() { StudentName = req.StudentName };
 
@@ -76,6 +76,7 @@ namespace Torian.Edline
                 var classes = CreateClasses(classRows).ToLookup(a => a.Item1, a => a.Item2); //force enumerate
 
                 ret.Grades = CreateGrades(client, classes.Select(a => Tuple.Create(a.Key, a.First())));
+                ret.StudentName = student.Item1;
             }
             return ret;
         }
