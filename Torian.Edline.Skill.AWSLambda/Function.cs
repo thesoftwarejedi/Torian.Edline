@@ -21,7 +21,7 @@ namespace Torian.Edline.Skill.AWSLambda
         {
             var intent = input.Request as IntentRequest;
             if (input.GetRequestType() == typeof(LaunchRequest))
-                return ResponseBuilder.Tell("You can ask me for a particular studen't grades");
+                return ResponseBuilder.Tell("You can ask me for a particular student grades");
             else if (intent.DialogState != DialogState.Completed)
                 return ResponseBuilder.DialogDelegate();
             else if (intent.Intent.ConfirmationStatus == ConfirmationStatus.Denied)
